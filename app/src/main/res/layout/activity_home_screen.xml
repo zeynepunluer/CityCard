@@ -28,51 +28,64 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:gravity="bottom">
 
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/btnCharging"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape"
-                android:text="Button 1" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="120dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:text="Button 2" />
+                android:textAllCaps="false"
+                android:text="Online Charging" />
+
+            <Button
+                android:id="@+id/btnSchedule"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape"
+                android:textAllCaps="false"
+                android:text="Route Schedule" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:gravity="top">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnWhere"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:text="Button 1" />
+                android:textAllCaps="false"
+                android:text="Where is the bus"
+                 />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btnHowtogo"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="120dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:text="Button 2" />
+                android:textAllCaps="false"
+                android:text="How To Go" />
 
         </TableRow>
     </TableLayout>

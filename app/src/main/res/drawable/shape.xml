@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="#FF0000" /> <!-- Kare butonun rengini burada belirleyebilirsiniz -->
+    <solid android:color="#A2C4C9" /> <!-- Kare butonun rengini burada belirleyebilirsiniz -->
     <corners android:radius="0dp" /> <!-- Köşelerin yuvarlaklığını sıfıra ayarlayarak kare şeklini sağlayın -->
 
 </shape>
