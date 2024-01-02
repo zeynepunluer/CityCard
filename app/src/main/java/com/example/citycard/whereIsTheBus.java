@@ -6,12 +6,12 @@ import androidx.cardview.widget.CardView;
 import android.os.Bundle;
 import android.view.View;
 
-public class RouteSchedule extends AppCompatActivity {
+public class whereIsTheBus extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_route_schedule);
+        setContentView(R.layout.activity_where_is_the_bus);
 
         // Find the CardView by its ID
         CardView toolBarCardView = findViewById(R.id.toolBar);
