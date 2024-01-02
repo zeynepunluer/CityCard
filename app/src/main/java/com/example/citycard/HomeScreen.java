@@ -47,7 +47,7 @@ public class HomeScreen extends AppCompatActivity {
         btnHowToGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeScreen.this, HomeScreen.class);
+                Intent intent = new Intent(HomeScreen.this, HowToGo.class);
                 startActivity(intent);
             }
         });
