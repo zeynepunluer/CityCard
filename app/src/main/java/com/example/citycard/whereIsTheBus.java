@@ -5,6 +5,9 @@ import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class whereIsTheBus extends AppCompatActivity {
 
@@ -25,5 +28,19 @@ public class whereIsTheBus extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        if (savedInstanceState == null) {
+            // FragmentTransaction başlat
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            // MapsFragment'ı oluşturun
+            MapsFragment mapsFragment = new MapsFragment();
+
+            // Fragmentı ekleyin
+            fragmentTransaction.add(R.id.fragment_container, mapsFragment); // R.id.fragment_container, fragmentın eklenmek istendiği layout id'si
+
+            // İşlemi tamamla
+            fragmentTransaction.commit();
+        }
     }
 }

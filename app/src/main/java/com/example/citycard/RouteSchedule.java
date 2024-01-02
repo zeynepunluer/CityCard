@@ -6,8 +6,10 @@
     import android.os.Bundle;
     import android.view.View;
 
-    public class RouteSchedule extends AppCompatActivity {
-
+    public class RouteSchedule extends AppCompatActivity implements CustomFragmentListener {
+        public void onCustomFragmentClose() {
+            getSupportFragmentManager().popBackStack();
+        }
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

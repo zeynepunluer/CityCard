@@ -1,15 +1,18 @@
 package com.example.citycard;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public class CustomFragment extends Fragment {
 
+    private CustomFragmentListener fragmentListener;
     private static final String ARG_ROUTE_INFO = "routeInfo";
 
     public static CustomFragment newInstance(String routeInfo) {
@@ -18,6 +21,16 @@ public class CustomFragment extends Fragment {
         args.putString(ARG_ROUTE_INFO, routeInfo);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof CustomFragmentListener) {
+            fragmentListener = (CustomFragmentListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement CustomFragmentListener");
+        }
     }
 
     @Override
@@ -31,10 +44,8 @@ public class CustomFragment extends Fragment {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // CardView'ları görünür yap
-                ((RouteSchedule) requireActivity()).setAllCardViewsVisible();
-                // Fragment'i kapat
-                requireActivity().getSupportFragmentManager().popBackStack();
+                fragmentListener.setAllCardViewsVisible();
+                fragmentListener.onCustomFragmentClose();
             }
         });
 

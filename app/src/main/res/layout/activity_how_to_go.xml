@@ -201,7 +201,20 @@
 
 
     </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"> <!-- layout_gravity eklenerek merkeze alındı -->
 
+        <!-- İçerik -->
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
