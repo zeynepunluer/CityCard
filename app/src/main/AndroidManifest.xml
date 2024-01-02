@@ -16,11 +16,8 @@
             android:name=".whereIsTheBus"
             android:exported="false" />
         <activity
-            android:name=".firstSchedule"
-            android:exported="false" />
-        <activity
             android:name=".RouteSchedule"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".BalanceCheck"
             android:exported="false" />
