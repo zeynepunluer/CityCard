@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F6F1E9"
     tools:context=".HomeScreen">
 
     <ImageView
@@ -41,7 +42,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape"
                 android:textAllCaps="false"
-                android:text="Online Charging" />
+                android:text="Online Charging"
+                android:elevation="8dp"/>
 
             <Button
                 android:id="@+id/btnSchedule"

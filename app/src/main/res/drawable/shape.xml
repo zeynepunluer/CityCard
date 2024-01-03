@@ -3,6 +3,6 @@
     android:shape="rectangle">
 
     <solid android:color="#A2C4C9" /> <!-- Kare butonun rengini burada belirleyebilirsiniz -->
-    <corners android:radius="0dp" /> <!-- Köşelerin yuvarlaklığını sıfıra ayarlayarak kare şeklini sağlayın -->
+    <corners android:radius="8dp" /> <!-- Köşelerin yuvarlaklığını sıfıra ayarlayarak kare şeklini sağlayın -->
 
 </shape>
