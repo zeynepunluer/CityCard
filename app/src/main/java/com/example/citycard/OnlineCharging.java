@@ -35,10 +35,10 @@ public class OnlineCharging extends AppCompatActivity {
 
         });
 
-        // Find the CardView by its ID
+
         CardView toolBarCardView = findViewById(R.id.toolBar);
 
-        // Set an OnClickListener for the CardView
+
         toolBarCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

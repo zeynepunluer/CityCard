@@ -91,7 +91,7 @@
 
         </LinearLayout>
 
-        <!-- İçerik -->
+
 
     </androidx.cardview.widget.CardView>
 
@@ -132,7 +132,7 @@
 
             </LinearLayout>
 
-            <!-- İçerik -->
+
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -163,7 +163,6 @@
 
             </LinearLayout>
 
-            <!-- İçerik -->
 
         </androidx.cardview.widget.CardView>
 
@@ -195,7 +194,7 @@
 
             </LinearLayout>
 
-            <!-- İçerik -->
+
 
         </androidx.cardview.widget.CardView>
 
@@ -211,9 +210,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolBar"
         android:layout_marginTop="10dp"
-        android:layout_gravity="center"> <!-- layout_gravity eklenerek merkeze alındı -->
+        android:layout_gravity="center">
 
-        <!-- İçerik -->
+
 
     </FrameLayout>
 

@@ -28,15 +28,14 @@ public class HowToGo extends AppCompatActivity implements CustomFragmentListener
                 }
             }
         });
-        // Find the CardView by its ID
+
         CardView toolBarCardView = findViewById(R.id.toolBar);
 
-        // Set an OnClickListener for the CardView
+
         toolBarCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the click event here
-                // In this example, navigate back to the home screen
+
                 onBackPressed();
             }
         });
@@ -45,7 +44,7 @@ public class HowToGo extends AppCompatActivity implements CustomFragmentListener
         CardView cardView4 = findViewById(R.id.cardView4);
         CardView cardView5 = findViewById(R.id.cardView5);
 
-        // Set OnClickListener for each CardView
+
         cardView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,10 +76,9 @@ public class HowToGo extends AppCompatActivity implements CustomFragmentListener
     private void openCustomFragment(String routeInfo) {
         CustomFragment customFragment = CustomFragment.newInstance(routeInfo);
 
-        // CustomFragment'ı açmadan önce fragment içeriğini özelleştirme
-        // customFragment.setCardContent(content); // Bu satır artık gerekli değil
 
-        // Fragment transaction başlat
+
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, customFragment)

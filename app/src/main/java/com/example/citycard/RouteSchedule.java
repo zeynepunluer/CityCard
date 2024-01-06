@@ -15,15 +15,14 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_route_schedule);
 
-            // Find the CardView by its ID
+
             CardView toolBarCardView = findViewById(R.id.toolBar);
 
-            // Set an OnClickListener for the CardView
+
             toolBarCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Handle the click event here
-                    // In this example, navigate back to the home screen
+
                     onBackPressed();
                 }
             });
@@ -86,12 +85,12 @@
         private void openCustomFragment(String routeInfo) {
             CustomFragment customFragment = CustomFragment.newInstance(routeInfo);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, customFragment)  // R.id.fragmentContainer, fragment'in yerleştirileceği bir layout id'sidir.
-                    .addToBackStack(null)  // Bu, geri tuşu ile fragment geçmişini yönetmek için kullanılır.
+                    .replace(R.id.fragmentContainer, customFragment)
+                    .addToBackStack(null)
                     .commit();
         }
 
-        // Tüm CardView'ları görünmez yap
+
         private void setAllCardViewsInvisible() {
             findViewById(R.id.cardView2).setVisibility(View.INVISIBLE);
             findViewById(R.id.cardView3).setVisibility(View.INVISIBLE);
