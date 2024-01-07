@@ -7,6 +7,19 @@
     android:background="#F6F1E9"
     tools:context=".OnlineCharging">
 
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
@@ -40,7 +53,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="Online Charging"
-                android:textColor="#FFFFFF"
+                android:textColor="#CCFAF6F6"
                 android:textSize="28sp"
                 android:textStyle="bold">
 
@@ -55,6 +68,7 @@
         android:layout_height="48dp"
         android:layout_margin="20dp"
         android:background="@drawable/edittext_background"
+        android:elevation="16dp"
         android:ems="10"
         android:hint="City Card Id"
         android:inputType="text"
@@ -73,7 +87,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/shape"
         android:text="Balance Check"
-        android:textColor="#FFFFFF"
+        android:textColor="#CCFAF6F6"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextAmount"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,6 +100,7 @@
         android:layout_height="48dp"
         android:layout_margin="20dp"
         android:background="@drawable/edittext_background"
+        android:elevation="16dp"
         android:ems="10"
         android:hint="Amount"
         android:inputType="text"
@@ -101,6 +116,7 @@
         android:layout_height="48dp"
         android:layout_margin="20dp"
         android:background="@drawable/edittext_background"
+        android:elevation="16dp"
         android:ems="10"
         android:hint="Credit Card Number"
         android:inputType="text"
@@ -116,6 +132,7 @@
         android:layout_height="48dp"
         android:layout_margin="20dp"
         android:background="@drawable/edittext_background"
+        android:elevation="16dp"
         android:ems="10"
         android:hint="CVV"
         android:inputType="text"
@@ -131,6 +148,7 @@
         android:layout_height="48dp"
         android:layout_margin="20dp"
         android:background="@drawable/edittext_background"
+        android:elevation="16dp"
         android:ems="10"
         android:hint="Expire Date"
         android:inputType="text"
@@ -148,7 +166,7 @@
         android:background="@drawable/shape"
         android:text="TOP UP"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#CCFAF6F6"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

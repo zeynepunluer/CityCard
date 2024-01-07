@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 public class CustomFragment extends Fragment {
@@ -40,7 +41,7 @@ public class CustomFragment extends Fragment {
         TextView routeTextView = view.findViewById(R.id.routeTextView);
         routeTextView.setText(getArguments().getString(ARG_ROUTE_INFO));
 
-        Button closeButton = view.findViewById(R.id.btnClose);
+        CardView closeButton = view.findViewById(R.id.toolBar);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
