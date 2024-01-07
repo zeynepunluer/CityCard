@@ -36,9 +36,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
                 android:padding="8dp"
                 android:text="Online Charging"
-                android:textColor="#495057"
+                android:textColor="#FFFFFF"
                 android:textSize="28sp"
                 android:textStyle="bold">
 
@@ -49,13 +51,17 @@
 
     <EditText
         android:id="@+id/editTextCityCardId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/edittext_background"
         android:ems="10"
         android:hint="City Card Id"
         android:inputType="text"
-        android:textSize="24sp"
+        android:padding="10dp"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/btnBalanceCheck"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
@@ -67,59 +73,71 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/shape"
         android:text="Balance Check"
-        android:textSize="32sp"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextAmount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
     <EditText
         android:id="@+id/editTextAmount"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_margin="20dp"
+        android:background="@drawable/edittext_background"
         android:ems="10"
         android:hint="Amount"
         android:inputType="text"
-        android:textSize="24sp"
+        android:padding="10dp"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextCCNum"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextCCNum"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_margin="20dp"
+        android:background="@drawable/edittext_background"
         android:ems="10"
         android:hint="Credit Card Number"
         android:inputType="text"
-        android:textSize="24sp"
+        android:padding="10dp"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextExpire"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextCVV"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_margin="20dp"
+        android:background="@drawable/edittext_background"
         android:ems="10"
         android:hint="CVV"
         android:inputType="text"
-        android:textSize="24sp"
+        android:padding="10dp"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/btnTopUp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextExpire"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_margin="20dp"
+        android:background="@drawable/edittext_background"
         android:ems="10"
         android:hint="Expire Date"
         android:inputType="text"
-        android:textSize="24sp"
+        android:padding="10dp"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextCVV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -130,7 +148,8 @@
         android:background="@drawable/shape"
         android:text="TOP UP"
         android:textAlignment="center"
-        android:textSize="32sp"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
