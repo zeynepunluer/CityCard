@@ -47,59 +47,66 @@
             <Button
                 android:id="@+id/btnCharging"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:textAllCaps="false"
+                android:elevation="8dp"
                 android:text="Online Charging"
-                android:elevation="8dp"/>
+                android:textAllCaps="false"
+                android:textColor="#CCFAF6F6"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btnSchedule"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
+                android:text="Route Schedule"
                 android:textAllCaps="false"
-                android:text="Route Schedule" />
+                android:textColor="#CCFAF6F6"
+                android:textSize="28sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="top">
+            android:gravity="center">
 
             <Button
                 android:id="@+id/btnWhere"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:textAllCaps="false"
                 android:text="Where is the bus"
-                 />
+                android:textAllCaps="false"
+                android:textSize="28sp"
+                android:textColor="#CCFAF6F6" />
 
             <Button
                 android:id="@+id/btnHowtogo"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
+                android:text="How To Go"
                 android:textAllCaps="false"
-                android:text="How To Go" />
+                android:textColor="#CCFAF6F6"
+                android:textSize="28sp" />
 
         </TableRow>
     </TableLayout>
