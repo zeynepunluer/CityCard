@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "164662348040",
+    "project_id": "citycard-e397d",
+    "storage_bucket": "citycard-e397d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164662348040:android:abda64bf00ef48de3484bd",
+        "android_client_info": {
+          "package_name": "com.example.citycard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Jpihhis83KADZhNTEqBXs4xLb89J8DQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
