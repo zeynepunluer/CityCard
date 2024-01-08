@@ -6,7 +6,7 @@
     import android.os.Bundle;
     import android.view.View;
 
-    public class RouteSchedule extends AppCompatActivity implements CustomFragmentListener {
+    public class RouteSchedule extends AppCompatActivity{
         public void onCustomFragmentClose() {
             getSupportFragmentManager().popBackStack();
         }
@@ -83,7 +83,9 @@
         }
 
         private void openCustomFragment(String routeInfo) {
-            CustomFragment customFragment = CustomFragment.newInstance(routeInfo);
+            RouteFragment customFragment = RouteFragment.newInstance(routeInfo);
+            customFragment.setParentActivity(this); // this, HowToGo sınıfının bir örneği olduğunu belirtir
+
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, customFragment)
                     .addToBackStack(null)

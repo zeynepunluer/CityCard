@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-public class HowToGo extends AppCompatActivity implements CustomFragmentListener {
+public class HowToGo extends AppCompatActivity{
     public void onCustomFragmentClose() {
         getSupportFragmentManager().popBackStack();
     }
@@ -74,10 +74,8 @@ public class HowToGo extends AppCompatActivity implements CustomFragmentListener
 
 
     private void openCustomFragment(String routeInfo) {
-        CustomFragment customFragment = CustomFragment.newInstance(routeInfo);
-
-
-
+        HowToGoFragment customFragment = HowToGoFragment.newInstance(routeInfo);
+        customFragment.setParentActivity(this); // this, HowToGo sınıfının bir örneği olduğunu belirtir
 
         getSupportFragmentManager()
                 .beginTransaction()
