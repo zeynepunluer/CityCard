@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 public class HowToGo extends AppCompatActivity{
     public void onCustomFragmentClose() {
         getSupportFragmentManager().popBackStack();
@@ -16,6 +18,11 @@ public class HowToGo extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_go);
+        ArrayList<HTGDirections> directionsList = new ArrayList<>();
+        directionsList.add(new HTGDirections("Art Museum", " asdsadasdasdsadasdsaLine 1.Line 2.Line 3."));
+        directionsList.add(new HTGDirections("Theme Park", " Line 1.\nLine 2.\nLine 3."));
+        directionsList.add(new HTGDirections("5th Avenue", " Line 1.\nLine 2.\nLine 3."));
+
         CardView cardView2 = findViewById(R.id.cardView2);
         cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,11 +51,10 @@ public class HowToGo extends AppCompatActivity{
         CardView cardView4 = findViewById(R.id.cardView4);
         CardView cardView5 = findViewById(R.id.cardView5);
 
-
         cardView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCustomFragment("Art Museum");
+                openCustomFragment(directionsList.get(0));
                 setAllCardViewsInvisible();
             }
         });
@@ -56,7 +62,7 @@ public class HowToGo extends AppCompatActivity{
         cardView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCustomFragment("Theme Park");
+                openCustomFragment(directionsList.get(1));
                 setAllCardViewsInvisible();
             }
         });
@@ -64,18 +70,16 @@ public class HowToGo extends AppCompatActivity{
         cardView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCustomFragment("5th Avenue");
+                openCustomFragment(directionsList.get(2));
                 setAllCardViewsInvisible();
             }
         });
-
-
     }
 
 
-    private void openCustomFragment(String routeInfo) {
-        HowToGoFragment customFragment = HowToGoFragment.newInstance(routeInfo);
-        customFragment.setParentActivity(this); // this, HowToGo sınıfının bir örneği olduğunu belirtir
+    private void openCustomFragment(HTGDirections directions) {
+        HowToGoFragment customFragment = HowToGoFragment.newInstance(directions);
+        customFragment.setParentActivity(this);
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -83,7 +87,6 @@ public class HowToGo extends AppCompatActivity{
                 .addToBackStack(null)
                 .commit();
     }
-
     private void setAllCardViewsInvisible() {
         findViewById(R.id.cardView2).setVisibility(View.INVISIBLE);
         findViewById(R.id.cardView3).setVisibility(View.INVISIBLE);

@@ -1,6 +1,9 @@
 package com.example.citycard;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BulletSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +20,12 @@ public class HowToGoFragment extends Fragment {
     }
 
 
-    private static final String ARG_HOWTOGO_INFO = "routeInfo";
+    private static final String ARG_HOWTOGO_INFO = "directionInfo";
 
-    public static HowToGoFragment newInstance(String routeInfo) {
+    public static HowToGoFragment newInstance(HTGDirections directions) {
         HowToGoFragment fragment = new HowToGoFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_HOWTOGO_INFO, routeInfo);
+        args.putSerializable(ARG_HOWTOGO_INFO, directions);
         fragment.setArguments(args);
         return fragment;
     }
@@ -32,8 +35,15 @@ public class HowToGoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_how_to_go, container, false);
 
-        TextView howTextView = view.findViewById(R.id.howToGoTextView);
-        howTextView.setText(getArguments().getString(ARG_HOWTOGO_INFO));
+        TextView howTitleTextView = view.findViewById(R.id.howToGoTextView);
+        TextView howDescriptionTextView = view.findViewById(R.id.howToGoDescriptionTextView);
+
+        HTGDirections directions = (HTGDirections) getArguments().getSerializable(ARG_HOWTOGO_INFO);
+
+        if (directions != null) {
+            howTitleTextView.setText(directions.getTitle());
+            howDescriptionTextView.setText(formatBulletList(directions.getDescription()));
+        }
 
         CardView closeButton = view.findViewById(R.id.toolBar);
         closeButton.setOnClickListener(new View.OnClickListener() {
@@ -47,5 +57,16 @@ public class HowToGoFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private SpannableString formatBulletList(String description) {
+        String[] lines = description.split("\n");
+        SpannableString spannableString = new SpannableString("");
+        for (String line : lines) {
+            String formattedLine = "• " + line + "\n";
+            spannableString = new SpannableString(spannableString + formattedLine);
+            spannableString.setSpan(new BulletSpan(8), spannableString.length() - formattedLine.length(), spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        }
+        return spannableString;
     }
 }
