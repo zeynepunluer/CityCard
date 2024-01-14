@@ -38,7 +38,7 @@ public class RouteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_route, container, false);
-        TextView busname = view.findViewById(R.id.TextBusName);
+        TextView busName = view.findViewById(R.id.TextBusName);
         Schedules schedule = (Schedules) getArguments().getSerializable(ARG_SCHEDULE);
         List<String> scheduleList = schedule.getSchedule();
 
@@ -49,7 +49,7 @@ public class RouteFragment extends Fragment {
         ListView listView2 = view.findViewById(R.id.listView2);
         TextView textView1 = view.findViewById(R.id.editTextDeparture);
         TextView textView2 = view.findViewById(R.id.editTextDestination);
-        busname=view.findViewById(R.id.TextBusName);
+        busName=view.findViewById(R.id.TextBusName);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, scheduleList);
 
         // ListView'e Adapter'ı set edin
@@ -58,7 +58,7 @@ public class RouteFragment extends Fragment {
         textView1.setText(schedule.getDeparture());
         textView2.setText(schedule.getDestination());
 
-        CardView closeButton = view.findViewById(R.id.toolBar);
+        CardView closeButton = view.findViewById(R.id.toolBarFrag);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

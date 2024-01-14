@@ -31,7 +31,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/toolBar"
+        android:id="@+id/toolBarFrag"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:cardBackgroundColor="#62929E"

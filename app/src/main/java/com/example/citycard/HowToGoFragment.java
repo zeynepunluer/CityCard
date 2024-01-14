@@ -45,7 +45,7 @@ public class HowToGoFragment extends Fragment {
             howDescriptionTextView.setText(formatBulletList(directions.getDescription()));
         }
 
-        CardView closeButton = view.findViewById(R.id.toolBar);
+        CardView closeButton = view.findViewById(R.id.toolBarFrag);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

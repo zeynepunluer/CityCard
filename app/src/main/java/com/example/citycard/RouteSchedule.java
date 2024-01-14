@@ -9,8 +9,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class RouteSchedule extends AppCompatActivity {
     private FirebaseFirestore firestore;
@@ -81,34 +79,44 @@ public class RouteSchedule extends AppCompatActivity {
     }
 
     private void updateUIWithSchedules(ArrayList<Schedules> scheduleList) {
-        // UI'yi Firestore'dan gelen veriyle güncelleyin
-        // Örneğin, cardView3, cardView4 ve cardView5'e tıklanınca RouteFragment açılacak şekilde güncelleme yapabilirsiniz
-        // Örnek olarak sadece cardView3'ü güncelliyorum, geri kalanları sizin iş mantığınıza göre ekleyebilirsiniz
+        // CardView'ların ID'lerini bir diziye ekleyin
+        int[] cardViewIds = {R.id.cardView2, R.id.cardView3, R.id.cardView4, R.id.cardView5, R.id.cardView6, R.id.cardView7};
 
-        CardView cardView3 = findViewById(R.id.cardView3);
-        cardView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (scheduleList.size() > 0) {
-                    openCustomFragment(scheduleList.get(0));
-                    setAllCardViewsInvisible();
+        // Her bir CardView için tıklama olayını ayarlamak için döngü kullanın
+        for (int i = 0; i < Math.min(scheduleList.size(), cardViewIds.length); i++) {
+            // CardView'ın ID'sini alın
+            int cardViewId = cardViewIds[i];
+
+            // ID'ye sahip CardView'ı bulun
+            CardView cardView = findViewById(cardViewId);
+
+            // Her bir tıklama olayında kullanmak üzere final bir değişken oluşturun
+            final int position = i;
+
+            // CardView'a tıklama olayını ekle
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Tıklanan CardView'ın konumu, scheduleList'in sınırları içinde mi kontrol et
+                    if (position < scheduleList.size()) {
+                        // Eğer içindeyse, ilgili schedule'ı al ve işlemleri gerçekleştir
+                        openCustomFragment(scheduleList.get(position));
+                        setAllCardViewsInvisible();
+                    }
                 }
-            }
-        });
-
-        // Diğer cardView'ları güncelleyin...
+            });
+        }
     }
 
-
     private void setAllCardViewsInvisible() {
-        int[] cardViewIds = {R.id.cardView2, R.id.cardView3, R.id.cardView4, R.id.cardView5, R.id.cardView6, R.id.cardView7};
+        int[] cardViewIds = {R.id.toolBar,R.id.cardView2, R.id.cardView3, R.id.cardView4, R.id.cardView5, R.id.cardView6, R.id.cardView7};
         for (int cardViewId : cardViewIds) {
             findViewById(cardViewId).setVisibility(View.INVISIBLE);
         }
     }
 
     public void setAllCardViewsVisible() {
-        int[] cardViewIds = {R.id.cardView2, R.id.cardView3, R.id.cardView4, R.id.cardView5, R.id.cardView6, R.id.cardView7};
+        int[] cardViewIds = {R.id.toolBar,R.id.cardView2, R.id.cardView3, R.id.cardView4, R.id.cardView5, R.id.cardView6, R.id.cardView7};
         for (int cardViewId : cardViewIds) {
             findViewById(cardViewId).setVisibility(View.VISIBLE);
         }
