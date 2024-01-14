@@ -16,7 +16,6 @@ import java.util.List;
 
 
 public class RouteFragment extends Fragment {
-    private static final String ARG_SCHEDULE_LIST = "scheduleList";
     private static RouteSchedule parentActivity;
 
     public static void setParentActivity(RouteSchedule activity) {

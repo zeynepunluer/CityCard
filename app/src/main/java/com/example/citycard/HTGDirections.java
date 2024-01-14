@@ -11,6 +11,9 @@ public class HTGDirections implements Serializable {
         this.title = title;
         this.description = description;
     }
+    public HTGDirections() {
+        // Boş yapıcı metodunda başka işlemler de ekleyebilirsiniz, ancak en azından bu kadarı gereklidir.
+    }
 
     public String getTitle() {
         return title;

@@ -20,8 +20,6 @@ public class RouteSchedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_schedule);
-        ArrayList<Schedules> scheduleList = new ArrayList<>();
-        // Firebase Firestore ve schedules koleksiyonunu başlatın
         firestore = FirebaseFirestore.getInstance();
         schedulesCollection = firestore.collection("Schedules");
 
