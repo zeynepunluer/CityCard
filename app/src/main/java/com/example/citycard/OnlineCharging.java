@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -128,11 +129,10 @@ public class OnlineCharging extends AppCompatActivity {
     private void showBalance(int balance) {
         Dialog balanceDialog = new Dialog(this);
         balanceDialog.setContentView(R.layout.popup_balancecheck);
-
         TextView txtBalance = balanceDialog.findViewById(R.id.txtBalance);
-        txtBalance.setText("Balance: " + balance);
+        txtBalance.setText(balance + "");
 
-        Button btnClosePopup = balanceDialog.findViewById(R.id.btnClosePopup);
+        ImageButton btnClosePopup = balanceDialog.findViewById(R.id.btnClosePopup);
         btnClosePopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
