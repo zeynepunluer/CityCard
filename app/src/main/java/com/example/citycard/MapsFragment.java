@@ -1,13 +1,14 @@
 package com.example.citycard;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,25 +16,18 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.FirestoreClient;
 
 public class MapsFragment extends Fragment {
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            retrieveMapData(googleMap);
         }
     };
 
@@ -53,5 +47,30 @@ public class MapsFragment extends Fragment {
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
+    }
+
+    private void retrieveMapData(GoogleMap googleMap) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Firestore'dan "harita_noktalari" koleksiyonundaki belgeleri sorgula
+        db.collection("Locations")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            // Firestore'dan belge verilerini çek
+                            double latitude = document.getDouble("latitude");
+                            double longitude = document.getDouble("longitude");
+
+                            // LatLng nesnesini oluştur ve haritada işaretle
+                            LatLng location = new LatLng(latitude, longitude);
+                            googleMap.addMarker(new MarkerOptions().position(location).title("Marker"));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                        }
+                    } else {
+                        // Firestore'dan veri alınırken hata oluştuğunda logla
+                        Log.w("Firestore", "Error getting documents.", task.getException());
+                    }
+                });
     }
 }

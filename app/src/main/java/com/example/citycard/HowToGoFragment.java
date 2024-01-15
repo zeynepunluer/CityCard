@@ -1,9 +1,6 @@
 package com.example.citycard;
 
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.BulletSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +33,26 @@ public class HowToGoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_how_to_go, container, false);
 
         TextView howTitleTextView = view.findViewById(R.id.howToGoTextView);
-        TextView howDescriptionTextView = view.findViewById(R.id.howToGoDescriptionTextView);
+        TextView description1 = view.findViewById(R.id.TxtDescription1);
+        TextView description2 = view.findViewById(R.id.TxtDescription2);
+        TextView description3 = view.findViewById(R.id.TxtDescription3);
+        TextView description4 = view.findViewById(R.id.TxtDescription4);
+        TextView description5 = view.findViewById(R.id.TxtDescription5);
+
+
 
         HTGDirections directions = (HTGDirections) getArguments().getSerializable(ARG_HOWTOGO_INFO);
 
         if (directions != null) {
             howTitleTextView.setText(directions.getTitle());
-            howDescriptionTextView.setText(formatBulletList(directions.getDescription()));
+            description1.setText(directions.getDescription1());
+            description2.setText(directions.getDescription2());
+            description3.setText(directions.getDescription3());
+            description4.setText(directions.getDescription4());
+            description5.setText(directions.getDescription5());
+
+
+
         }
 
         CardView closeButton = view.findViewById(R.id.toolBarFrag);
@@ -59,14 +69,4 @@ public class HowToGoFragment extends Fragment {
         return view;
     }
 
-    private SpannableString formatBulletList(String description) {
-        String[] lines = description.split("\n");
-        SpannableString spannableString = new SpannableString("");
-        for (String line : lines) {
-            String formattedLine = "• " + line + "\n";
-            spannableString = new SpannableString(spannableString + formattedLine);
-            spannableString.setSpan(new BulletSpan(8), spannableString.length() - formattedLine.length(), spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        }
-        return spannableString;
-    }
 }
