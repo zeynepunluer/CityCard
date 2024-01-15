@@ -56,7 +56,7 @@ public class MapsFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         // Kullanıcının konumu temsil eden bir marker ekle (örneğin, Istanbul şehri)
-                        LatLng currentLocation = new LatLng(37.1621378, 28.3724131);
+                        LatLng currentLocation = new LatLng(37.16129830, 28.37680666);
                         googleMap.addMarker(new MarkerOptions()
                                 .position(currentLocation)
                                 .title("Current Location")
@@ -71,7 +71,7 @@ public class MapsFragment extends Fragment {
                             LatLng location = new LatLng(latitude, longitude);
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
-                                    .title("Bus Stop")
+                                    .title("Bus Location")
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.busicon)));
                         }
 
