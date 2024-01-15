@@ -14,17 +14,15 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.core.FirestoreClient;
 
 public class MapsFragment extends Fragment {
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
-
         @Override
         public void onMapReady(GoogleMap googleMap) {
             retrieveMapData(googleMap);
@@ -52,11 +50,18 @@ public class MapsFragment extends Fragment {
     private void retrieveMapData(GoogleMap googleMap) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Firestore'dan "harita_noktalari" koleksiyonundaki belgeleri sorgula
+        // Firestore'dan "Locations" koleksiyonundaki belgeleri sorgula
         db.collection("Locations")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        // Kullanıcının konumu temsil eden bir marker ekle (örneğin, Istanbul şehri)
+                        LatLng currentLocation = new LatLng(37.1621378, 28.3724131);
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(currentLocation)
+                                .title("Current Location")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))); // Mavi renkte bir marker
+
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             // Firestore'dan belge verilerini çek
                             double latitude = document.getDouble("latitude");
@@ -64,9 +69,15 @@ public class MapsFragment extends Fragment {
 
                             // LatLng nesnesini oluştur ve haritada işaretle
                             LatLng location = new LatLng(latitude, longitude);
-                            googleMap.addMarker(new MarkerOptions().position(location).title("Marker"));
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(location)
+                                    .title("Bus Stop")
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.busicon)));
                         }
+
+
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f));
+
                     } else {
                         // Firestore'dan veri alınırken hata oluştuğunda logla
                         Log.w("Firestore", "Error getting documents.", task.getException());
