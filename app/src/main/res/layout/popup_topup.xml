@@ -5,51 +5,57 @@
     android:layout_width="350dp"
     android:layout_height="350dp"
     android:layout_gravity="center"
+    android:background="#A1C2C7"
     >
+
+    <TextView
+        android:id="@+id/txtUpdatedBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="SUCCESSFUL TRANSACTION"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtOldBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Önceki Bakiye: 0"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        android:layout_marginTop="50sp"
+        android:text="Previous Balance: 0"
+        android:textColor="@color/white"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClosePopup" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUpdatedBalance" />
 
     <TextView
         android:id="@+id/txtNewBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yeni Bakiye: 0"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50sp"
+        android:text="Updated Balance: 0"
+        android:textColor="@color/white"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@id/txtOldBalance" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your top-up succeeed"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnClosePopup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Close"
-        android:textSize="16sp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="#A1C2C7"
+        android:src="@drawable/btn_check"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/txtNewBalance" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

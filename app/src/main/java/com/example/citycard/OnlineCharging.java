@@ -148,7 +148,7 @@ public class OnlineCharging extends AppCompatActivity {
 
         TextView txtOldBalance = topUpDialog.findViewById(R.id.txtOldBalance);
         TextView txtNewBalance = topUpDialog.findViewById(R.id.txtNewBalance);
-        Button btnClosePopup = topUpDialog.findViewById(R.id.btnClosePopup);
+        ImageButton btnClosePopup = topUpDialog.findViewById(R.id.btnClosePopup);
 
         txtOldBalance.setText("Old Balance: " + oldBalance);
         txtNewBalance.setText("New Balance: " + newBalance);

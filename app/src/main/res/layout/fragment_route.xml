@@ -5,17 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/TextBusName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBarFrag" />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/toolBarFrag"
@@ -63,19 +53,21 @@
         android:id="@+id/topBoxesLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TextBusName">
+        app:layout_constraintTop_toBottomOf="@id/toolBarFrag">
 
         <!-- Sol Kutucuk -->
         <androidx.cardview.widget.CardView
             android:id="@+id/leftBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="15dp"
+            android:layout_width="30dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:padding="5dp"
             app:cardBackgroundColor="#62929E"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
@@ -88,7 +80,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:textColor="@color/white"
-                android:textSize="36sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/listlayout"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -100,11 +92,13 @@
         <!-- Sağ Kutucuk -->
         <androidx.cardview.widget.CardView
             android:id="@+id/rightBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="17dp"
             android:layout_weight="1"
+            android:padding="5dp"
             app:cardBackgroundColor="#62929E"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
@@ -117,7 +111,8 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:textColor="@color/white"
-                android:textSize="36sp"
+                android:maxLines="2"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/listlayout"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -133,13 +128,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="30dp"
         android:layout_marginRight="16dp"
         android:orientation="horizontal"
         android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TextBusName">
+        app:layout_constraintTop_toBottomOf="@id/topBoxesLayout">
 
         <!-- Left CardView for the first ListView -->
 
@@ -148,7 +142,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
@@ -157,9 +151,9 @@
 
             <ListView
                 android:id="@+id/listView1"
-                android:background="#A1C2C7"
                 android:layout_width="match_parent"
                 android:layout_height="380dp"
+                android:background="#A1C2C7"
                 android:divider="@android:color/darker_gray"
                 android:dividerHeight="0.5dp"
                 android:padding="10sp" />
@@ -170,14 +164,14 @@
             android:id="@+id/listSeparator"
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="30dp"
             android:background="@android:color/darker_gray" />
 
         <!-- Right CardView for the second ListView -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
@@ -186,9 +180,9 @@
 
             <ListView
                 android:id="@+id/listView2"
-                android:background="#A1C2C7"
                 android:layout_width="match_parent"
                 android:layout_height="380dp"
+                android:background="#A1C2C7"
                 android:divider="@android:color/darker_gray"
                 android:dividerHeight="0.5dp"
                 android:padding="10sp" />
