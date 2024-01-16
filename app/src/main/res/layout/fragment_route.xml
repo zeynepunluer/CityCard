@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolBarFrag">
 
-        <!-- Sol Kutucuk -->
+
         <androidx.cardview.widget.CardView
             android:id="@+id/leftBox"
             android:layout_width="30dp"
@@ -70,7 +70,7 @@
             android:padding="5dp"
             app:cardBackgroundColor="#62929E"
             app:cardCornerRadius="20dp"
-            app:cardElevation="5dp">
+            app:cardElevation="8dp">
 
             <TextView
                 android:id="@+id/editTextDeparture"
@@ -85,11 +85,11 @@
                 app:layout_constraintBottom_toTopOf="@id/listlayout"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- Sol Kutucuk İçeriği Buraya Eklenecek -->
+
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Sağ Kutucuk -->
+
         <androidx.cardview.widget.CardView
             android:id="@+id/rightBox"
             android:layout_width="30dp"
@@ -101,7 +101,7 @@
             android:padding="5dp"
             app:cardBackgroundColor="#62929E"
             app:cardCornerRadius="20dp"
-            app:cardElevation="5dp">
+            app:cardElevation="8dp">
 
             <TextView
                 android:id="@+id/editTextDestination"
@@ -116,8 +116,6 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/listlayout"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <!-- Sağ Kutucuk İçeriği Buraya Eklenecek -->
 
         </androidx.cardview.widget.CardView>
     </LinearLayout>
@@ -135,17 +133,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topBoxesLayout">
 
-        <!-- Left CardView for the first ListView -->
-
-        <!-- Separator between ListViews -->
-
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toStartOf="@id/listSeparator"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -167,14 +161,14 @@
             android:layout_marginTop="30dp"
             android:background="@android:color/darker_gray" />
 
-        <!-- Right CardView for the second ListView -->
+
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/listSeparator">
 
