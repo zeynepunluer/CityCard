@@ -32,7 +32,7 @@ public class HowToGoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_how_to_go, container, false);
 
-        TextView howTitleTextView = view.findViewById(R.id.howToGoTextView);
+        TextView location = view.findViewById(R.id.location);
         TextView description1 = view.findViewById(R.id.TxtDescription1);
         TextView description2 = view.findViewById(R.id.TxtDescription2);
         TextView description3 = view.findViewById(R.id.TxtDescription3);
@@ -44,7 +44,7 @@ public class HowToGoFragment extends Fragment {
         HTGDirections directions = (HTGDirections) getArguments().getSerializable(ARG_HOWTOGO_INFO);
 
         if (directions != null) {
-            howTitleTextView.setText(directions.getTitle());
+            location.setText(directions.getTitle());
             description1.setText(directions.getDescription1());
             description2.setText(directions.getDescription2());
             description3.setText(directions.getDescription3());
