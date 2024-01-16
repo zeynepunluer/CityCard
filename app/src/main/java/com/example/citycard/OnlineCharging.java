@@ -1,8 +1,7 @@
 package com.example.citycard;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import android.app.Dialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 public class OnlineCharging extends AppCompatActivity {
     private FirebaseFirestore firestore;
 
@@ -36,25 +36,7 @@ public class OnlineCharging extends AppCompatActivity {
                     return;
                 }
 
-                // Firestore'da ilgili dokümanı sorgula
-                DocumentReference docRef = firestore.collection("Cards").document(cityCardId);
-                docRef.get().addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // Firestore'dan belgeyi al ve Card nesnesine çevir
-                            Card card = document.toObject(Card.class);
-                            if (card != null) {
-                                Integer balance = card.getBalance();
-                                showBalance(balance);
-                            }
-                        } else {
-                            Toast.makeText(OnlineCharging.this, "Kart bulunamadı", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(OnlineCharging.this, "Firestore hatası: " + task.getException(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                new FetchBalanceTask().execute(cityCardId);
             }
         });
 
@@ -73,57 +55,96 @@ public class OnlineCharging extends AppCompatActivity {
                     Toast.makeText(OnlineCharging.this, "Lütfen tüm alanları doldurun", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                try {
+                    int checkInteger = Integer.parseInt(addedBalance);
 
+                } catch (NumberFormatException e) {
+                    // addedBalance bir tamsayıya çevrilemezse kullanıcıya uyarı gönder
+                    Toast.makeText(OnlineCharging.this, "Amount must be integer", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                // Firestore'da ilgili dokümanın bakiye alanını güncelle
-                DocumentReference docRef = firestore.collection("Cards").document(cityCardId);
-                docRef.get().addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // Firestore'dan belgeyi al ve Card nesnesine çevir
-                            Card card = document.toObject(Card.class);
-                            if (card != null) {
-                                // Önceki bakiyeyi al
-                                Integer oldBalance = card.getBalance();
-
-                                // Yeni bakiyeyi hesapla ve Firestore'a geri yaz
-                                Integer newBalance = oldBalance + Integer.parseInt(addedBalance);
-                                docRef.update("balance", newBalance).addOnCompleteListener(updateTask -> {
-                                    if (updateTask.isSuccessful()) {
-                                        Toast.makeText(OnlineCharging.this, "Bakiye Güncellendi", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(OnlineCharging.this, "Firestore hatası: " + updateTask.getException(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                                // Top-up pop-up ekranını göster
-                                showTopUp(oldBalance, newBalance);
-                            }
-                        } else {
-                            Toast.makeText(OnlineCharging.this, "Kart bulunamadı", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(OnlineCharging.this, "Firestore hatası: " + task.getException(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                new TopUpBalanceTask(cityCardId, addedBalance).execute();
             }
         });
 
-
         CardView toolBarCardView = findViewById(R.id.toolBar);
-
 
         toolBarCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the click event here
-                // In this example, navigate back to the home screen
                 onBackPressed();
             }
         });
+    }
 
+    private class FetchBalanceTask extends AsyncTask<String, Void, Integer> {
+        @Override
+        protected Integer doInBackground(String... params) {
+            String cityCardId = params[0];
+            DocumentReference docRef = firestore.collection("Cards").document(cityCardId);
+            try {
+                DocumentSnapshot document = Tasks.await(docRef.get());
+                if (document.exists()) {
+                    Card card = document.toObject(Card.class);
+                    if (card != null) {
+                        return card.getBalance();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
 
+        @Override
+        protected void onPostExecute(Integer balance) {
+            if (balance != null) {
+                showBalance(balance);
+            } else {
+                Toast.makeText(OnlineCharging.this, "Kart bulunamadı", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private class TopUpBalanceTask extends AsyncTask<Void, Void, Integer> {
+        private String cityCardId;
+        private String addedBalance;
+
+        public TopUpBalanceTask(String cityCardId, String addedBalance) {
+            this.cityCardId = cityCardId;
+            this.addedBalance = addedBalance;
+        }
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            DocumentReference docRef = firestore.collection("Cards").document(cityCardId);
+            try {
+                DocumentSnapshot document = Tasks.await(docRef.get());
+                if (document.exists()) {
+                    Card card = document.toObject(Card.class);
+                    if (card != null) {
+                        Integer oldBalance = card.getBalance();
+                        Integer newBalance = oldBalance + Integer.parseInt(addedBalance);
+                        Tasks.await(docRef.update("balance", newBalance));
+                        return newBalance;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer newBalance) {
+            if (newBalance != null) {
+                Toast.makeText(OnlineCharging.this, "Bakiye Güncellendi", Toast.LENGTH_SHORT).show();
+                showTopUp(newBalance - Integer.parseInt(addedBalance), newBalance);
+            } else {
+                Toast.makeText(OnlineCharging.this, "Kart bulunamadı", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void showBalance(int balance) {
@@ -142,6 +163,7 @@ public class OnlineCharging extends AppCompatActivity {
 
         balanceDialog.show();
     }
+
     private void showTopUp(int oldBalance, int newBalance) {
         Dialog topUpDialog = new Dialog(this);
         topUpDialog.setContentView(R.layout.popup_topup);
@@ -150,8 +172,8 @@ public class OnlineCharging extends AppCompatActivity {
         TextView txtNewBalance = topUpDialog.findViewById(R.id.txtNewBalance);
         ImageButton btnClosePopup = topUpDialog.findViewById(R.id.btnClosePopup);
 
-        txtOldBalance.setText("Old Balance: " + oldBalance);
-        txtNewBalance.setText("New Balance: " + newBalance);
+        txtOldBalance.setText("Eski Bakiye: " + oldBalance);
+        txtNewBalance.setText("Yeni Bakiye: " + newBalance);
 
         btnClosePopup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,5 +184,4 @@ public class OnlineCharging extends AppCompatActivity {
 
         topUpDialog.show();
     }
-
 }

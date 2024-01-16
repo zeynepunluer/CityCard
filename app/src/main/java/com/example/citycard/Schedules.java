@@ -12,7 +12,6 @@ public class Schedules implements Serializable {
 
 
     public Schedules() {
-        // Boş yapıcı metodunda başka işlemler de ekleyebilirsiniz, ancak en azından bu kadarı gereklidir.
     }
 
     public Schedules(String busName, List<String> schedule, String departure, String destination) {
