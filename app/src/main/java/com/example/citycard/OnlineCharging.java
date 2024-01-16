@@ -25,22 +25,29 @@ public class OnlineCharging extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
         Button btnBalanceCheck = findViewById(R.id.btnBalanceCheck);
+        Button btnTopUp = findViewById(R.id.btnTopUp);
         Dialog dialog = new Dialog(this);
+        CardView toolBarCardView = findViewById(R.id.toolBar);
 
+        toolBarCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        // using thread functions for balance checking
         btnBalanceCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String cityCardId = ((EditText) findViewById(R.id.editTextCityCardId)).getText().toString().toUpperCase();
                 if (cityCardId.isEmpty()) {
-                    Toast.makeText(OnlineCharging.this, "Lütfen tüm alanları doldurun", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OnlineCharging.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 new FetchBalanceTask().execute(cityCardId);
             }
         });
-
-        Button btnTopUp = findViewById(R.id.btnTopUp);
+        // using thread functions for balance top up
         btnTopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,16 +57,14 @@ public class OnlineCharging extends AppCompatActivity {
                 String expireDate = ((EditText) findViewById(R.id.editTextExpire)).getText().toString();
                 String cvv = ((EditText) findViewById(R.id.editTextCVV)).getText().toString();
 
-                // Boşluk kontrolü
                 if (cityCardId.isEmpty() || addedBalance.isEmpty() || creditCardNumber.isEmpty() || expireDate.isEmpty() || cvv.isEmpty()) {
-                    Toast.makeText(OnlineCharging.this, "Lütfen tüm alanları doldurun", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OnlineCharging.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
                     int checkInteger = Integer.parseInt(addedBalance);
 
                 } catch (NumberFormatException e) {
-                    // addedBalance bir tamsayıya çevrilemezse kullanıcıya uyarı gönder
                     Toast.makeText(OnlineCharging.this, "Amount must be integer", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -67,17 +72,8 @@ public class OnlineCharging extends AppCompatActivity {
                 new TopUpBalanceTask(cityCardId, addedBalance).execute();
             }
         });
-
-        CardView toolBarCardView = findViewById(R.id.toolBar);
-
-        toolBarCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
-
+    // with this function we can check our data while our application is still can clickable
     private class FetchBalanceTask extends AsyncTask<String, Void, Integer> {
         @Override
         protected Integer doInBackground(String... params) {
@@ -96,16 +92,16 @@ public class OnlineCharging extends AppCompatActivity {
             }
             return null;
         }
-
         @Override
         protected void onPostExecute(Integer balance) {
             if (balance != null) {
                 showBalance(balance);
             } else {
-                Toast.makeText(OnlineCharging.this, "Kart bulunamadı", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OnlineCharging.this, "There is no card with this id", Toast.LENGTH_SHORT).show();
             }
         }
     }
+    // with this function we can update our data while our application is still can clickable
 
     private class TopUpBalanceTask extends AsyncTask<Void, Void, Integer> {
         private String cityCardId;
@@ -139,10 +135,10 @@ public class OnlineCharging extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer newBalance) {
             if (newBalance != null) {
-                Toast.makeText(OnlineCharging.this, "Bakiye Güncellendi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OnlineCharging.this, "Balance is updated", Toast.LENGTH_SHORT).show();
                 showTopUp(newBalance - Integer.parseInt(addedBalance), newBalance);
             } else {
-                Toast.makeText(OnlineCharging.this, "Kart bulunamadı", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OnlineCharging.this, "There is no card with this id", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -172,8 +168,8 @@ public class OnlineCharging extends AppCompatActivity {
         TextView txtNewBalance = topUpDialog.findViewById(R.id.txtNewBalance);
         ImageButton btnClosePopup = topUpDialog.findViewById(R.id.btnClosePopup);
 
-        txtOldBalance.setText("Eski Bakiye: " + oldBalance);
-        txtNewBalance.setText("Yeni Bakiye: " + newBalance);
+        txtOldBalance.setText("Old Balance: " + oldBalance);
+        txtNewBalance.setText("New Balance: " + newBalance);
 
         btnClosePopup.setOnClickListener(new View.OnClickListener() {
             @Override
