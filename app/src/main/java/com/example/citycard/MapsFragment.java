@@ -47,39 +47,33 @@ public class MapsFragment extends Fragment {
         }
     }
 
+        //
     private void retrieveMapData(GoogleMap googleMap) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        // Firestore'dan "Locations" koleksiyonundaki belgeleri sorgula
         db.collection("Locations")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // Kullanıcının konumu temsil eden bir marker ekle (örneğin, Istanbul şehri)
+                        // im adding initial location for user,
                         LatLng currentLocation = new LatLng(37.16129830, 28.37680666);
                         googleMap.addMarker(new MarkerOptions()
                                 .position(currentLocation)
                                 .title("Current Location")
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))); // Mavi renkte bir marker
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            // Firestore'dan belge verilerini çek
+                            // pull cordinates from firestore
                             double latitude = document.getDouble("latitude");
                             double longitude = document.getDouble("longitude");
-
-                            // LatLng nesnesini oluştur ve haritada işaretle
                             LatLng location = new LatLng(latitude, longitude);
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
                                     .title("Bus Location")
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.busicon)));
                         }
-
-
                             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f));
 
                     } else {
-                        // Firestore'dan veri alınırken hata oluştuğunda logla
                         Log.w("Firestore", "Error getting documents.", task.getException());
                     }
                 });
