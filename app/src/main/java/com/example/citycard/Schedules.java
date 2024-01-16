@@ -3,16 +3,15 @@ package com.example.citycard;
 import java.io.Serializable;
 import java.util.List;
 
-public class Schedules implements Serializable {
+public class Schedules implements Serializable {  //this is the class where schedule objects that we fetch from Firebase is kept
     private String busName;
-    private List<String> schedule;
+    private List<String> schedule;    //these variables match with how they are in Firebase
 
     private String departure;
     private String destination;
 
 
     public Schedules() {
-        // Boş yapıcı metodunda başka işlemler de ekleyebilirsiniz, ancak en azından bu kadarı gereklidir.
     }
 
     public Schedules(String busName, List<String> schedule, String departure, String destination) {

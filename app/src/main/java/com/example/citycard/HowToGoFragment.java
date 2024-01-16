@@ -9,17 +9,17 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-public class HowToGoFragment extends Fragment {
-    private static HowToGo parentActivity; // HowToGo sınıfından bir referans tanımlayın
+public class HowToGoFragment extends Fragment {    // Fragment class for displaying information on how to go to a location
+    private static HowToGo parentActivity;
 
     public static void setParentActivity(HowToGo activity) {
         parentActivity = activity;
     }
 
 
-    private static final String ARG_HOWTOGO_INFO = "directionInfo";
+    private static final String ARG_HOWTOGO_INFO = "directionInfo"; // key for passing HowToGoDirections data as an argument to the fragment
 
-    public static HowToGoFragment newInstance(HTGDirections directions) {
+    public static HowToGoFragment newInstance(HTGDirections directions) {  // creating a new instance of the fragment with specified HowToGoDirections data
         HowToGoFragment fragment = new HowToGoFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_HOWTOGO_INFO, directions);
@@ -34,7 +34,7 @@ public class HowToGoFragment extends Fragment {
 
         TextView location = view.findViewById(R.id.location);
         TextView description1 = view.findViewById(R.id.TxtDescription1);
-        TextView description2 = view.findViewById(R.id.TxtDescription2);
+        TextView description2 = view.findViewById(R.id.TxtDescription2);    // setting the fragment view and UI components
         TextView description3 = view.findViewById(R.id.TxtDescription3);
         TextView description4 = view.findViewById(R.id.TxtDescription4);
         TextView description5 = view.findViewById(R.id.TxtDescription5);
@@ -43,7 +43,7 @@ public class HowToGoFragment extends Fragment {
 
         HTGDirections directions = (HTGDirections) getArguments().getSerializable(ARG_HOWTOGO_INFO);
 
-        if (directions != null) {
+        if (directions != null) {      // setting the text views with the corresponding information
             location.setText(directions.getTitle());
             description1.setText(directions.getDescription1());
             description2.setText(directions.getDescription2());

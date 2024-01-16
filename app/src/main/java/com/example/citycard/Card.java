@@ -2,21 +2,18 @@ package com.example.citycard;
 
 import java.io.Serializable;
 
-public class Card implements Serializable {
-    private String id;
-    private Integer balance;
-
-    // Boş parametreli constructor
+public class Card implements Serializable { //this class represent city card objects
+    private String id;    //unique identifier for the card
+    private Integer balance;   //current balance on the card
+                                //these variables is proper for how they represent in Firebase
     public Card() {
     }
 
-    // Parametreli constructor
     public Card(String id, Integer balance) {
         this.id = id;
         this.balance = balance;
     }
 
-    // Getter ve setter metotları
     public String getId() {
         return id;
     }

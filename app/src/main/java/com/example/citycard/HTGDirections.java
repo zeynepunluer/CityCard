@@ -2,7 +2,7 @@ package com.example.citycard;
 
 import java.io.Serializable;
 
-public class HTGDirections implements Serializable {
+public class HTGDirections implements Serializable {   //in this class, we hold how to go directions which we fetch from Firebase
     private String title;
     private String description1;
     private String description2;
@@ -22,7 +22,6 @@ public class HTGDirections implements Serializable {
 
     }
     public HTGDirections() {
-        // Boş yapıcı metodunda başka işlemler de ekleyebilirsiniz, ancak en azından bu kadarı gereklidir.
     }
 
     public String getTitle() {

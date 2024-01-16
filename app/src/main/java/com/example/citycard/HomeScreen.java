@@ -11,14 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class HomeScreen extends AppCompatActivity {
-
+public class HomeScreen extends AppCompatActivity { //This is the main page of the application
+                                                //here we have buttons that lead user to other activities
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        Button btnOnlineCharging = findViewById(R.id.btnCharging);
+        Button btnOnlineCharging = findViewById(R.id.btnCharging); //button for navigating user to online charging activity
         btnOnlineCharging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +27,7 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-        Button btnRouteSchedule = findViewById(R.id.btnSchedule);
+        Button btnRouteSchedule = findViewById(R.id.btnSchedule);  //button for navigating user to route schedule activity
         btnRouteSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +37,7 @@ public class HomeScreen extends AppCompatActivity {
         });
 
         Button btnWhereIs = findViewById(R.id.btnWhere);
-        btnWhereIs.setOnClickListener(new View.OnClickListener() {
+        btnWhereIs.setOnClickListener(new View.OnClickListener() {   //button for navigating user to where is the bus activity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeScreen.this, whereIsTheBus.class);
@@ -45,7 +45,7 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-        Button btnHowToGo = findViewById(R.id.btnHowtogo);
+        Button btnHowToGo = findViewById(R.id.btnHowtogo);          //button for navigating user to how to go activity
         btnHowToGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
