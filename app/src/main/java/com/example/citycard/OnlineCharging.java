@@ -92,6 +92,7 @@ public class OnlineCharging extends AppCompatActivity {
             }
             return null;
         }
+        // with this function we can update our data while our application is still can clickable
         @Override
         protected void onPostExecute(Integer balance) {
             if (balance != null) {
@@ -101,7 +102,6 @@ public class OnlineCharging extends AppCompatActivity {
             }
         }
     }
-    // with this function we can update our data while our application is still can clickable
 
     private class TopUpBalanceTask extends AsyncTask<Void, Void, Integer> {
         private String cityCardId;
