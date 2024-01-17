@@ -108,8 +108,6 @@
 
         </LinearLayout>
 
-        <!-- İçerik -->
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -145,8 +143,6 @@
             </TextView>
 
         </LinearLayout>
-
-        <!-- İçerik -->
 
     </androidx.cardview.widget.CardView>
 
@@ -184,8 +180,6 @@
 
         </LinearLayout>
 
-        <!-- İçerik -->
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -222,7 +216,6 @@
 
         </LinearLayout>
 
-        <!-- İçerik -->
 
     </androidx.cardview.widget.CardView>
 
@@ -260,8 +253,6 @@
 
         </LinearLayout>
 
-        <!-- İçerik -->
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -298,9 +289,6 @@
 
         </LinearLayout>
 
-        <!-- İçerik -->
-
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
